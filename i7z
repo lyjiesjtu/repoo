@@ -16,3 +16,6 @@ do
     # 每秒采集一次
     sleep 1
 done
+
+-rw-r--r-- 1 root root 420 Sep 16 03:18 record_i7z.sh
+
