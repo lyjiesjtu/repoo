@@ -1,21 +1,18 @@
 #!/bin/bash
+# record_i7z.sh: 每秒记录一次i7z输出
 
-# 输出文件路径
-OUTPUT_FILE="i7z_data_record.txt"
+output_file="i7z_log.txt"
 
-# 每秒采集一次数据，直到用户手动停止
-while true
-do
-    # 记录当前时间戳
-    echo "====================" >> $OUTPUT_FILE
-    echo "Timestamp: $(date '+%Y-%m-%d %H:%M:%S')" >> $OUTPUT_FILE
-    
-    # 记录 i7z 的数据
-    sudo i7z 2>/dev/null | grep -A 20 "CPU Freq" >> $OUTPUT_FILE
+# 创建文件并添加标题
+echo "Timestamp, i7z Output" > $output_file
 
-    # 每秒采集一次
+# 开始记录
+while true; do
+    timestamp=$(date '+%Y-%m-%d %H:%M:%S')
+    # 获取i7z输出并保存到临时变量
+    i7z_output=$(sudo i7z | grep "MHz") # 根据需要调整输出
+    echo "$timestamp, $i7z_output" >> $output_file
     sleep 1
 done
 
--rw-r--r-- 1 root root 420 Sep 16 03:18 record_i7z.sh
 
