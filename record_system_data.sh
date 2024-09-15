@@ -1,29 +1,20 @@
 #!/bin/bash
 
-# 设置日志文件路径
 LOGFILE="system_data.log"
-
-# 打印标题到日志文件
-echo "Timestamp, CPU Temp (C), GPU Temp (C), Voltage (mV), CPU Frequency (MHz), Power Consumption (W)" > $LOGFILE
+echo "Timestamp, CPU Temp (Core 0), CPU Temp (Core 4), CPU Temp (Core 8), NVMe Temp" > $LOGFILE
 
 while true; do
-    # 获取当前时间戳
     TIMESTAMP=$(date +"%Y-%m-%d %H:%M:%S")
-    
-    # 获取传感器数据
-    CPU_TEMP=$(sensors | grep 'Tctl' | awk '{print $2}' | sed 's/+//; s/°C//')
-    GPU_TEMP=$(sensors | grep 'edge' | awk '{print $2}' | sed 's/+//; s/°C//')
-    VOLTAGE=$(sensors | grep 'vddgfx' | awk '{print $2}' | sed 's/ mV//')
 
-    # 获取 CPU 频率
-    CPU_FREQ=$(sudo i7z | grep 'CPU Frequency' | awk '{print $4}' | sed 's/ MHz//')
+    # 获取 CPU 温度数据
+    CPU_TEMP_CORE0=$(sensors | grep 'Core 0' | awk '{print $2}' | sed 's/+//; s/°C//')
+    CPU_TEMP_CORE4=$(sensors | grep 'Core 4' | awk '{print $2}' | sed 's/+//; s/°C//')
+    CPU_TEMP_CORE8=$(sensors | grep 'Core 8' | awk '{print $2}' | sed 's/+//; s/°C//')
 
-    # 获取功耗数据
-    POWER_CONSUMPTION=$(sudo powertop -d 1 -t 1 | grep 'Power est' | awk '{print $3}' | sed 's/W//')
+    # 获取 NVMe 温度数据
+    NVME_TEMP=$(sensors | grep 'nvme-pci-0100' -A 2 | grep 'Sensor 1' | awk '{print $2}' | sed 's/+//; s/°C//')
 
-    # 将数据写入日志文件
-    echo "$TIMESTAMP, $CPU_TEMP, $GPU_TEMP, $VOLTAGE, $CPU_FREQ, $POWER_CONSUMPTION" >> $LOGFILE
+    echo "$TIMESTAMP, $CPU_TEMP_CORE0, $CPU_TEMP_CORE4, $CPU_TEMP_CORE8, $NVME_TEMP" >> $LOGFILE
 
-    # 等待 1 秒
     sleep 1
 done
