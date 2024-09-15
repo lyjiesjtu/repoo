@@ -10,14 +10,14 @@ do
     echo "====================" >> $OUTPUT_FILE
     echo "Timestamp: $(date '+%Y-%m-%d %H:%M:%S')" >> $OUTPUT_FILE
     
-    # 记录 powertop 的数据
+    # 记录 powertop 的数据 (重定向为纯文本)
     echo "---- powertop data ----" >> $OUTPUT_FILE
-    sudo powertop --time=1 --html=powertop_output.html
-    cat powertop_output.html >> $OUTPUT_FILE
+    sudo powertop --time=1 --csv=powertop_output.csv 2>/dev/null
+    cat powertop_output.csv >> $OUTPUT_FILE
     
-    # 记录 i7z 的数据 (需要手动中断 i7z)
+    # 记录 i7z 的数据
     echo "---- i7z data ----" >> $OUTPUT_FILE
-    sudo i7z -w >> $OUTPUT_FILE
+    sudo i7z -t 1 -y >> $OUTPUT_FILE
 
     # 每秒采集一次
     sleep 1
