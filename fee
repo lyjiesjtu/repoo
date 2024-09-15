@@ -1,0 +1,23 @@
+autorc@AutoRC:~$ sudo ./record_powertop_i7z.sh 
+modprobe cpufreq_stats failedLoaded 0 prior measurements
+RAPL device for cpu 0
+RAPL Using PowerCap Sysfs : Domain Mask d
+RAPL device for cpu 0
+RAPL Using PowerCap Sysfs : Domain Mask d
+Devfreq not enabled
+glob returned GLOB_ABORTED
+Preparing to take measurements
+Taking 1 measurement(s) for a duration of 1 second(s) each.
+PowerTOP outputing using base filename powertop_output.html
+i7z: option requires an argument -- 'w'
+modprobe cpufreq_stats failedLoaded 0 prior measurements
+RAPL device for cpu 0
+RAPL Using PowerCap Sysfs : Domain Mask d
+RAPL device for cpu 0
+RAPL Using PowerCap Sysfs : Domain Mask d
+Devfreq not enabled
+glob returned GLOB_ABORTED
+Preparing to take measurements
+Taking 1 measurement(s) for a duration of 1 second(s) each.
+PowerTOP outputing using base filename powertop_output.html
+i7z: option requires an argument -- 'w'
