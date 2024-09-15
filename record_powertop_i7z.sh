@@ -15,9 +15,9 @@ do
     sudo powertop --time=1 --csv=powertop_output.csv 2>/dev/null
     cat powertop_output.csv >> $OUTPUT_FILE
     
-    # 记录 i7z 的数据 (截取前几行作为输出)
+    # 记录 i7z 的数据 (捕获运行时输出)
     echo "---- i7z data ----" >> $OUTPUT_FILE
-    sudo i7z | head -n 20 >> $OUTPUT_FILE
+    sudo i7z | tee -a $OUTPUT_FILE | head -n 20
 
     # 每秒采集一次
     sleep 1
