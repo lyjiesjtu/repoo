@@ -3,4 +3,4 @@ terminal 1: roscore
 terminal 2(run teensy):sudo chmod 666 /dev/ttyACM0
 		       rosrun rosserial_python serial_node.py /dev/ttyACM0
 
-terminal 3(run python):python3 ~/ros_comm_ws/src/rccar_comm/src RosControlArduino_Class.pi 
+terminal 3(run python):python3 ~/ros_comm_ws/src/rccar_comm/src/RosControlArduino_Class.py 
