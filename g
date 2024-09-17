@@ -82,3 +82,16 @@ Device     Boot Start       End   Sectors  Size Id Type
 
 
 grub-install --target=x86_64-efi --efi-directory=/mnt/efi --bootloader-id=grub --recheck
+
+
+
+ubuntu@ubuntu:~$ sudo mkdir /mnt/efi
+ubuntu@ubuntu:~$ sudo mount /dev/nvme0n1p1 /mnt/efi
+ubuntu@ubuntu:~$ sudo mount --bind /dev /mnt/dev
+ubuntu@ubuntu:~$ sudo mount --bind /proc /mnt/proc
+ubuntu@ubuntu:~$ sudo mount --bind /sys /mnt/sys
+ubuntu@ubuntu:~$ sudo chroot /mnt
+root@ubuntu:/# grub-install --target=x86_64-efi --efi-directory=/mnt/efi --bootloader-id=grub --recheck
+Installing for x86_64-efi platform.
+grub-install: error: failed to get canonical path of `/mnt/efi'.
+
