@@ -77,3 +77,8 @@ Disk identifier: 0x001fa9e5
 
 Device     Boot Start       End   Sectors  Size Id Type
 /dev/sda1  *     2048 120164287 120162240 57.3G  c W95 FAT32 (LBA)
+
+
+
+
+grub-install --target=x86_64-efi --efi-directory=/mnt/efi --bootloader-id=grub --recheck
