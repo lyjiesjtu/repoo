@@ -1,0 +1,16 @@
+#!/bin/bash
+
+# 启动 roscore
+gnome-terminal -- bash -c "roscore; exec bash"
+
+# 等待 roscore 完成启动
+sleep 10
+
+# 设置权限并运行 rosserial
+gnome-terminal -- bash -c "sudo chmod 666 /dev/ttyACM0; rosrun rosserial_python serial_node.py /dev/ttyACM0; exec bash"
+
+# 等待 rosserial 启动
+sleep 10
+
+# 运行 Python 脚本
+gnome-terminal -- bash -c "python3 ~/ros_comm_ws/src/rccar_comm/src/RosControlArduino_Class.py; exec bash"
