@@ -50,3 +50,13 @@ subprocess.Popen(['python3', os.path.expanduser('~/ros_comm_ws/src/rccar_comm/sr
 # 保持脚本运行
 while True:
     time.sleep(1)
+
+
+
+
+//
+<launch>
+    <!-- 启动自定义脚本 -->
+    <node pkg="rccar_comm" type="start_ros_nodes.py" name="start_ros_nodes" output="screen"/>
+</launch>
+
